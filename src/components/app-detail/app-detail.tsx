@@ -23,6 +23,16 @@ export class AppDetail {
         console.log(id);
       });
   }
+  supprimer() {
+    fetch("https://polymer-101-workshop.cleverapps.io/api/blogpost/"+this.match.params.id, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+        }
+      })
+.then(response => response.json());
+}
 
   render() {
     return (
@@ -59,7 +69,9 @@ export class AppDetail {
                 <div>
                     
                     <button>Modifier</button>
-                    <button>Supprimer</button>
+                    <stencil-route-link url="/">
+                        <button  onClick={this.supprimer.bind(this)} >  supprimer </button>
+                    </stencil-route-link>
                 </div>
               </form>
 
